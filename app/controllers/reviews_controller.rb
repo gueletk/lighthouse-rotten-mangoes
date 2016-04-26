@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
   before_filter :load_movie
   before_filter :restrict_access
 
+
   def new
     @review = @movie.reviews.build
   end
@@ -23,4 +24,9 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:text, :rating_out_of_ten)
   end
+
+  def load_movie
+  @movie = Movie.find(params[:movie_id])
+  end
+
 end
