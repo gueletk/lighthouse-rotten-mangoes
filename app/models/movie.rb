@@ -1,5 +1,10 @@
 class Movie < ActiveRecord::Base
 
+  scope :title, -> (title) { where("title like ?", "%#{title}%")}
+  scope :shorter_than, -> (runtime_in_minutes) { where("runtime_in_minutes < ?", runtime_in_minutes) }
+  scope :longer_than, -> (runtime_in_minutes) { where("runtime_in_minutes > ?", runtime_in_minutes) }
+  scope :director, -> (director) { where("director like ?", "%#{director}%")}
+
   has_many :reviews
   mount_uploader :poster, PosterUploader
   validates :title,
