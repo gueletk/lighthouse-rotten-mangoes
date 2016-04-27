@@ -1,36 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Movies</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Director</th>
-      <th>Runtime in minutes</th>
-      <th>Description</th>
-      <th>Poster image url</th>
-      <th>Release date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @movies.each do |movie| %>
-      <tr>
-        <td><%= movie.title %></td>
-        <td><%= movie.director %></td>
-        <td><%= movie.runtime_in_minutes %></td>
-        <td><%= movie.description %></td>
-        <td><%= movie.poster_image_url %></td>
-        <td><%= movie.release_date %></td>
-        <td><%= link_to 'Show', movie %></td>
-        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @movies.each do |movie| %>
+  <div class="media well">
+     <a href="#" class="pull-left"><%= image_tag(movie.poster_image_url) %></a>
+    <div class="media-body">
+      <h4 class="media-heading">
+        <%= movie.title %>
+      </h4>
+      <%= movie.director %><br>
+      <%= movie.runtime_in_minutes %><br>
+      <%= movie.release_date %><br>
+      <%= movie.description %>
+    </div>
+  </div>
+<% end %>
 
 <br>
 

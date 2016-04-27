@@ -10,7 +10,6 @@ class MoviesController < ApplicationController
   # GET /movies/1
   # GET /movies/1.json
   def show
-    @movie = Movie.find(params[:id])
   end
 
   # GET /movies/new
@@ -20,7 +19,6 @@ class MoviesController < ApplicationController
 
   # GET /movies/1/edit
   def edit
-    @movie = Movie.find(params[:id])
   end
 
   # POST /movies
