@@ -10,8 +10,6 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-
-
   def new
     @user = User.new
   end
@@ -21,7 +19,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-
+    
   end
 
   def edit

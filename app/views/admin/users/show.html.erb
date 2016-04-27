@@ -1,0 +1,13 @@
+<div>
+  Name: <%= @user.full_name %><br>
+  Email: <%= @user.email %><br>
+  Comments:
+    <% if !@user.reviews.empty? %>
+      <% @user.reviews.each do |review| %>
+        <h3>Movie: <%= review.movie.title %></h3> <br>
+        <%= review.text %>
+      <% end %>
+    <% else %>
+      This user has not left any reviews
+    <% end %>
+</div>
