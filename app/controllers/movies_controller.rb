@@ -4,8 +4,31 @@ class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.json
   def index
-    @movies = Movie.all.title(params[:movie][:title])
+    if params[:search]
+      @movies = Movie.search(params[:search])
+    else
+    # params[:movie][:title] = nil if params[:movie] != "" && params[:movie][:title] == ""
+    # params[:movie][:director] = nil if params[:movie] != "" && params[:movie][:director] == ""
+    #
+    # if params[:movie] != ""
+
+#    end
+      @movies = Movie.all
+    end
+    # if params[:time_range]
+    #   case params[:time_range]
+    #   when "1"
+    #     @movies = Movie.all.title(params[:movie][:title]).director(params[:movie][:director]).shorter_than(90)
+    #   when "2"
+    #     @movies = Movie.all.title(params[:movie][:title]).director(params[:movie][:director]).shorter_than(120).longer_than_or_equal_to(90)
+    #   when "3"
+    #     @movies = Movie.all.title(params[:movie][:title]).director(params[:movie][:director]).longer_than_or_equal_to(120)
+    #   else
+    #     @movies = Movie.all
+    #   end
+    # end
   end
+
 
   # GET /movies/1
   # GET /movies/1.json

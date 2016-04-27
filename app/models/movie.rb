@@ -2,8 +2,8 @@ class Movie < ActiveRecord::Base
 
   scope :title, -> (title) { where("title like ?", "%#{title}%")}
   scope :shorter_than, -> (runtime_in_minutes) { where("runtime_in_minutes < ?", runtime_in_minutes) }
-  scope :longer_than, -> (runtime_in_minutes) { where("runtime_in_minutes > ?", runtime_in_minutes) }
-  scope :director, -> (director) { where("director like ?", "%#{director}%")}
+  scope :longer_than_or_equal_to, -> (runtime_in_minutes) { where("runtime_in_minutes >= ?", runtime_in_minutes) }
+  scope :director, -> (director) { where("director like ?", "%#{director}%") }
 
   has_many :reviews
   mount_uploader :poster, PosterUploader
@@ -26,6 +26,27 @@ class Movie < ActiveRecord::Base
     presence: true
 
   validate :release_date_is_in_the_past
+
+  def self.search(search)
+    @movies = Movie.all
+    case search[:time_range]
+    when "1"
+      @movies = @movies.shorter_than(90)
+    when "2"
+      @movies = @movies.shorter_than(120).longer_than_or_equal_to(90)
+    when "3"
+      @movies = @movies.longer_than_or_equal_to(120)
+    end
+
+    if search[:title]
+      @movies = @movies.title(search[:title])
+    end
+
+    if search[:director]
+      @movies = @movies.director(search[:director])
+    end
+    @movies
+  end
 
   protected
 
