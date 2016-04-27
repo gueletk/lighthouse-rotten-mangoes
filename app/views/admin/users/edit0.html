@@ -1,4 +1,4 @@
-<h1>Create a new User</h1>
+<h1>Edit the profile of <%= @user.full_name %></h1>
 <%= form_for [:admin, @user] do |f| %>
   <% if @user.errors.any? %>
     <div>
