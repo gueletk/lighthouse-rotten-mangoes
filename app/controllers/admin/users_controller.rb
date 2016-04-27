@@ -19,7 +19,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    
+
   end
 
   def edit
@@ -32,6 +32,17 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    redirect_to root_path, notice: "The user has been deleted"
+  end
+
+  def create
+    @user = User.new(user_params)
+
+    if @user.save
+      redirect_to movies_path, notice: "An account for #{@user.firstname} has been created!"
+    else
+      render :new
+    end
   end
 
   protected
