@@ -1,21 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Movies</h1>
+<h1>Movies</h1>
 <% @movies.each do |movie| %>
-  <div class="media well">
-     <a href="#" class="pull-left"><%= image_tag(movie.poster_image_url) %></a>
-    <div class="media-body">
-      <h4 class="media-heading">
-        <%= movie.title %>
-      </h4>
-      <%= movie.director %><br>
-      <%= movie.runtime_in_minutes %><br>
-      <%= movie.release_date %><br>
-      <%= movie.description %>
-    </div>
-  </div>
+  <%= render partial: "movie", locals: {movie: movie} %>
 <% end %>
-
-<br>
-
-<%= link_to 'New Movie', new_movie_path %>

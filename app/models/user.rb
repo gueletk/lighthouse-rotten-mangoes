@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  paginates_per 5
   has_secure_password
 
   has_many :reviews
@@ -10,5 +11,5 @@ class User < ActiveRecord::Base
   def admin?
     admin
   end
-  
+
 end

@@ -10,33 +10,36 @@
   <% flash.each do |key, value| %>
     <%= content_tag(:div, value) %>
   <% end %>
-<%= yield %>
-<%= render 'layouts/footer' %>
-
-
 
   <div class="container-fluid">
   	<div class="row">
   		<div class="col-md-12">
   			<ul class="breadcrumb">
   				<li>
-  					<a href="#">Home</a> <span class="divider">/</span>
+  					<a href="#">Home</a> <span class="divider"></span>
   				</li>
   				<li>
-  					<a href="#">Library</a> <span class="divider">/</span>
+  					<a href="#">Library</a> <span class="divider"></span>
   				</li>
   				<li class="active">
   					Data
   				</li>
   			</ul>
+
+        <div class="col-sm-3">
+          <% if current_user %>
+            Signed in as <%= current_user.email %> (<%= link_to "Log out", session_path("current"), method: :delete %>)
+          <% else %>
+            <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
+          <% end %>
+        </div>
+
   		</div>
   	</div>
   	<div class="row">
   		<div class="col-md-8">
-  			<h3>
-  				h3. Lorem ipsum dolor sit amet.
-  			</h3>
 
+          <%= yield %>
   			<ul class="pagination">
   				<li>
   					<a href="#">Prev</a>
@@ -62,20 +65,10 @@
   			</ul>
   		</div>
   		<div class="col-md-4">
-  			<div class="btn-group btn-group-vertical btn-group-lg">
-
-  				<button class="btn btn-default" type="button">
-  					<em class="glyphicon glyphicon-align-left"></em> Left
-  				</button>
-  				<button class="btn btn-default" type="button">
-  					<em class="glyphicon glyphicon-align-center"></em> Center
-  				</button>
-  				<button class="btn btn-default" type="button">
-  					<em class="glyphicon glyphicon-align-right"></em> Right
-  				</button>
-  				<button class="btn btn-default" type="button">
-  					<em class="glyphicon glyphicon-align-justify"></em> Justify
-  				</button>
+  			<div class="list-group">
+          <a href="<%= new_movie_path %>" class="list-group-item">
+    					<em class="glyphicon glyphicon-plus"></em> Add a movie
+          </a>
   			</div>
   		</div>
   	</div>
@@ -84,6 +77,6 @@
   		</div>
   	</div>
   </div>
-
+<%= render 'layouts/footer' %>
 </body>
 </html>

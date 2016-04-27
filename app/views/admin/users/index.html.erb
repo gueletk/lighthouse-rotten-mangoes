@@ -21,5 +21,7 @@ THIS IS THE INDEX FOR ADMINS
         <td><%= link_to 'Destroy', admin_user_path(:id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+    <%= paginate @users %>
+
   </tbody>
 </table>

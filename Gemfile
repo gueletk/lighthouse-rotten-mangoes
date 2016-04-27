@@ -29,6 +29,7 @@ gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'kaminari'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
