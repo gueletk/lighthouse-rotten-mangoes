@@ -10,8 +10,73 @@
   <% flash.each do |key, value| %>
     <%= content_tag(:div, value) %>
   <% end %>
-<%= yield %>
-<%= render 'layouts/footer' %>
 
+  <div class="container-fluid">
+  	<div class="row">
+  		<div class="col-md-12">
+  			<ul class="breadcrumb">
+  				<li>
+  					<a href="#">Home</a> <span class="divider"></span>
+  				</li>
+  				<li>
+  					<a href="#">Library</a> <span class="divider"></span>
+  				</li>
+  				<li class="active">
+  					Data
+  				</li>
+  			</ul>
+
+        <div class="col-sm-3">
+          <% if current_user %>
+            Signed in as <%= current_user.email %> (<%= link_to "Log out", session_path("current"), method: :delete %>)
+          <% else %>
+            <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
+          <% end %>
+        </div>
+
+  		</div>
+  	</div>
+  	<div class="row">
+  		<div class="col-md-8">
+
+          <%= yield %>
+  			<ul class="pagination">
+  				<li>
+  					<a href="#">Prev</a>
+  				</li>
+  				<li>
+  					<a href="#">1</a>
+  				</li>
+  				<li>
+  					<a href="#">2</a>
+  				</li>
+  				<li>
+  					<a href="#">3</a>
+  				</li>
+  				<li>
+  					<a href="#">4</a>
+  				</li>
+  				<li>
+  					<a href="#">5</a>
+  				</li>
+  				<li>
+  					<a href="#">Next</a>
+  				</li>
+  			</ul>
+  		</div>
+  		<div class="col-md-4">
+  			<div class="list-group">
+          <a href="<%= new_movie_path %>" class="list-group-item">
+    					<em class="glyphicon glyphicon-plus"></em> Add a movie
+          </a>
+  			</div>
+  		</div>
+  	</div>
+  	<div class="row">
+  		<div class="col-md-12">
+  		</div>
+  	</div>
+  </div>
+<%= render 'layouts/footer' %>
 </body>
 </html>

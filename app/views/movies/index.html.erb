@@ -1,37 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Movies</h1>
+<%= form_tag("/", method: "get") do %>
+  <%= label_tag(:title, "Search for:") %>
+  <%= text_field_tag("search[title]", nil, options = {:placeholder => "Title"}) %>
+  <%= text_field_tag("search[director]", nil, placeholder: "Director") %>
+  <%= select_tag("search[time_range]", options_for_select([['Under 90 minutes', 1], ['Between 90 and 120 minutes', 2], ['Over 120 minutes', 3]]), :prompt => "Movie Length") %>
+  <%= submit_tag("Search") %>
+<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Director</th>
-      <th>Runtime in minutes</th>
-      <th>Description</th>
-      <th>Poster image url</th>
-      <th>Release date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @movies.each do |movie| %>
-      <tr>
-        <td><%= movie.title %></td>
-        <td><%= movie.director %></td>
-        <td><%= movie.runtime_in_minutes %></td>
-        <td><%= movie.description %></td>
-        <td><%= movie.poster_image_url %></td>
-        <td><%= movie.release_date %></td>
-        <td><%= link_to 'Show', movie %></td>
-        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Movie', new_movie_path %>
+<h1>Movies</h1>
+<% @movies.each do |movie| %>
+  <%= render partial: "movie", locals: {movie: movie} %>
+<% end %>

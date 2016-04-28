@@ -1,0 +1,12 @@
+<div class="media well movie">
+   <a href="#" class="pull-left"><%= image_tag(movie.poster.url) %></a>
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= movie.title %>
+    </h4>
+    <%= movie.director %><br>
+    <%= movie.runtime_in_minutes %><br>
+    <%= movie.release_date %><br>
+    <%= movie.description %>
+  </div>
+</div>
