@@ -1,5 +1,6 @@
-<h1>Edit the profile of <%= @user.full_name %></h1>
-<%= form_for [:admin, @user] do |f| %>
+Create a new user
+
+<%= form_for @user do |f| %>
   <% if @user.errors.any? %>
     <div>
       <%= pluralize(@user.errors.count, "error") %> prevented the account from being created:
