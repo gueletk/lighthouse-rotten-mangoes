@@ -31,6 +31,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
+    UserMailer.deletion(@user).deliver_later
     @user.destroy
     redirect_to root_path, notice: "The user has been deleted"
   end
