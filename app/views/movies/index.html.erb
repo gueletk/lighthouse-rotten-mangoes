@@ -1,5 +1,13 @@
 <p id="notice"><%= notice %></p>
 
+<%= form_tag("/", method: "get") do %>
+  <%= label_tag(:title, "Search for:") %>
+  <%= text_field_tag("search[title]", nil, options = {:placeholder => "Title"}) %>
+  <%= text_field_tag("search[director]", nil, placeholder: "Director") %>
+  <%= select_tag("search[time_range]", options_for_select([['Under 90 minutes', 1], ['Between 90 and 120 minutes', 2], ['Over 120 minutes', 3]]), :prompt => "Movie Length") %>
+  <%= submit_tag("Search") %>
+<% end %>
+
 <h1>Movies</h1>
 <% @movies.each do |movie| %>
   <%= render partial: "movie", locals: {movie: movie} %>
